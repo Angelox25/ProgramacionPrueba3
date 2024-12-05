@@ -36,7 +36,7 @@ describe('ApiHtmlPage', () => {
 
   });
 
-  it('P6: should load data successfully in ngOnInit', () => {
+  it('P6: Cargar datos exitosamente en ngOnInit', () => {
     // Datos simulados para la respuesta del endpoint
     const mockResponse = {
       info: { count: 826 }, // Número total de personajes

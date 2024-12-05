@@ -22,7 +22,7 @@ describe('GeneraQrPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('P8: Valor inicial de qrData del "Texto de base"', () => {
+  it('P8: Valor inicial de qrData', () => {
     expect(component.qrData).toBe('Texto de base');
   });
 
