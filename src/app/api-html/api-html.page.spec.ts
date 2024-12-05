@@ -30,37 +30,38 @@ describe('ApiHtmlPage', () => {
     httpMock.verify(); // Verifica que no queden solicitudes pendientes
   });
 
-  it('P5 - Verificar la creación del componente', () => {
+
+  it('P5: Verificar la creación del componente', () => {
      expect(component).toBeTruthy(); // Verifica que el componente no sea nulo o indefinido
 
   });
 
-  it('should load data successfully in ngOnInit', () => {
+  it('P6: should load data successfully in ngOnInit', () => {
     // Datos simulados para la respuesta del endpoint
     const mockResponse = {
-      info: { count: 20 }, // Número total de personajes
+      info: { count: 826 }, // Número total de personajes
       results: [
-        { name: 'Rick Sanchez', status: 'Alive', image: 'url-to-image-1' },
-        { name: 'Morty Smith', status: 'Alive', image: 'url-to-image-2' }
+        { name: 'Rick Sanchez', status: 'Alive', image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg' },
+        { name: 'Morty Smith', status: 'Alive', image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg' }
       ]
     };
   
     // Ejecutar ngOnInit para disparar la carga de datos
     component.ngOnInit();
   
-    // Simular la solicitud HTTP interceptando el request con HttpTestingController
-    const req = httpMock.expectOne('https://rickandmortyapi.com/api/character');
+    // Interceptar la solicitud HTTP utilizando la URL del servicio
+    const req = httpMock.expectOne(apiService['apiUrl']);
   
-    // Asegurarse de que el método sea GET
+    // Asegurarse de que el método HTTP es GET
     expect(req.request.method).toBe('GET');
   
     // Simular la respuesta con los datos de prueba
     req.flush(mockResponse);
   
     // Verificar que las propiedades del componente se actualizaron correctamente
-    expect(component.cantidad_personajes).toBe(mockResponse.info.count);
-    expect(component.personajes).toEqual(mockResponse.results);
-  });
+    expect(component.cantidad_personajes).toBe(mockResponse.info.count); // Verifica el conteo total
+    expect(component.personajes).toEqual(mockResponse.results); // Verifica los datos de los personajes
+  }); 
   
   
 

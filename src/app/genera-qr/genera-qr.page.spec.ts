@@ -48,6 +48,6 @@ describe('GeneraQrPage', () => {
         expect(component.createdCode).toBe('Nuevo texto QR');
         // Resultado esperado: createdCode debe coincidir con el nuevo valor de qrData
     
-
   });
+  
 });
